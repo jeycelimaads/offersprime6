@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ryoko Pro – Unlimited Global High-Speed Internet Anywhere</title>
+    <meta name="description" content="Stay connected everywhere with Ryoko Pro. Get unlimited, high-speed, secure internet in 176 countries. No contracts, no roaming fees. Order yours today!">
+
+
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="lkawb5hfPZnrwXfKVuBZ4tv7HHeDKJovm9f2C_ELl_0" />
+    <meta name="robots" content="index, follow">
+
+
+     <!-- Icon -->
+    <link rel="preload" as="image" href="./imagens/ryoko_icon.png" media="(max-width: 767px)">
+    <link rel="preload" as="image" href="./imagens/ryoko_icon.png">
+    <link rel="icon" href="./imagens/ryoko_icon.png">
+
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <style>
+        /* Estilos Globais e Fundo */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: top center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+
+        /* IMAGEM DE FUNDO DO SITE */
+        @media (min-width: 1025px) {
+            body {
+                background-image: url('./imagens/ryoko_desktop.png'), linear-gradient(to right, #e2e8f0, #cbd5e1);
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1024px) {
+            body {
+                background-image: url('./imagens/ryoko_tablet.png'), linear-gradient(to right, #cbd5e1, #94a3b8);
+            }
+        }
+        @media (max-width: 767px) {
+            body {
+                background-image: url('./imagens/ryoko_mobile.png'), linear-gradient(to bottom, #f1f5f9, #e2e8f0);
+            }
+        }
+
+
+        /* Fundo escuro atrás do popup */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            width: 100vw;
+            height: 100vh;
+            cursor: pointer;
+        }
+
+
+        /* Fundo escuro atrás do popup */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            width: 100vw;
+            height: 100vh;
+            cursor: pointer;
+        }
+
+
+        /* Wrapper para centralizar o Cookie e o Botão SEO */
+        .popup-wrapper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+            width: 100%;
+            max-width: 500px;
+            max-height: 95vh; /* Permite rolagem se necessário */
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            scrollbar-width: none; /* Firefox: oculta a barra */
+            -ms-overflow-style: none; /* IE e Edge: oculta a barra */
+        }
+
+
+        /* Oculta a barra de rolagem em navegadores Webkit (Chrome, Safari, novo Edge) */
+        .popup-wrapper::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+            display: none;
+        }
+
+
+        /* Estilos do Popup de Cookie */
+        .cookie-popup {
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 24px;
+            box-sizing: border-box;
+        }
+
+
+        .cookie-popup h2 {
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            margin: 0 0 16px;
+            text-align: center;
+        }
+
+
+        .cookie-popup p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            margin: 0 0 24px;
+            text-align: center;
+        }
+
+
+        /* Estilos dos Botões */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+
+        .btn {
+            display: inline-block;
+            font-size: 14px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+            box-sizing: border-box;
+        }
+
+
+        .btn-accept {
+            background-color: #007bff;
+            color: #fff;
+            border: 2px solid #007bff;
+        }
+
+
+        .btn-accept:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+
+        .btn-reject {
+            background: #f0f2f5;
+            color: #1877f2;
+            border: 2px solid #f0f2f5;
+        }
+
+
+        .btn-reject:hover {
+            background: #e4e6e9;
+        }
+
+
+        /* --- SEO SECTION STYLES --- */
+        .seo-btn {
+            background-color: transparent;
+            color: #71757c; /* Cinza um pouco mais escuro, mas ainda discreto */
+            padding: 10px;
+            font-size: 11px; /* Fonte pequena */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: color 0.3s;
+            font-weight: 300; /* Slim / Fina */
+            display: block;
+            margin: 20px auto 5px auto; /* Afastado da caixa principal */
+            box-shadow: none;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+
+
+        .seo-btn:hover {
+            color: #ffffff; /* Destaca levemente ao passar o mouse */
+            background-color: transparent;
+            text-decoration: underline;
+            opacity: 1;
+            transform: none;
+        }
+
+
+        /* Container que fica oculto (Adaptado para dentro do popup) */
+        #wuffy-seo-content {
+            display: none; /* Oculto por padrão */
+            width: 100%;
+            margin: 10px auto 0 auto;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background-color: #f8fafc;
+            box-sizing: border-box;
+            text-align: left; /* Garante que o texto fique à esquerda dentro do container centralizado */
+        }
+
+
+        /* Estilos Isolados do Conteúdo SEO */
+        #wuffy-seo-content .meta-preview {
+            background: #ffffff;
+            padding: 15px;
+            border-left: 5px solid #3b82f6;
+            margin-bottom: 20px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.85rem;
+            color: #475569;
+            border-radius: 0 8px 8px 0;
+            border: 1px solid #e2e8f0;
+            border-left-width: 5px;
+        }
+       
+        #wuffy-seo-content h1 { color: #1e293b; font-size: 22px; margin-bottom: 15px; font-weight: 800; line-height: 1.3; text-align: left; }
+        #wuffy-seo-content h2 { color: #1e293b; font-size: 18px; margin-top: 25px; margin-bottom: 10px; font-weight: 700; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; text-align: left; }
+        #wuffy-seo-content h3 { font-size: 1.1rem; font-weight: 600; margin-top: 20px; color: #334155; text-align: left; }
+        #wuffy-seo-content p { margin-bottom: 15px; line-height: 1.6; color: #475569; text-align: left; font-size: 14px; }
+        #wuffy-seo-content ul { list-style-type: disc; padding-left: 20px; color: #475569; text-align: left; font-size: 14px; }
+        #wuffy-seo-content li { margin-bottom: 8px; }
+        #wuffy-seo-content .badge { background: #ef4444; color: white; padding: 3px 8px; font-size: 11px; border-radius: 99px; vertical-align: middle; font-weight: bold; letter-spacing: 0.5px; margin-left: 8px; display: inline-block; margin-bottom: 5px; }
+        #wuffy-seo-content blockquote { border-left: 4px solid #cbd5e1; padding-left: 15px; font-style: italic; color: #64748b; margin: 20px 0; text-align: left; font-size: 13.5px; }
+        #wuffy-seo-content hr.border-gray-200 { border-top: 1px solid #e2e8f0; margin: 20px 0; border-bottom: none; }
+
+
+
+
+        /* Ajustes para telas menores (Smartphones) */
+        @media (max-width: 500px) {
+            .popup-wrapper {
+                width: 95%;
+            }
+
+
+            .cookie-popup {
+                width: 100%;
+                padding: 20px 15px;
+            }
+
+
+            .cookie-popup h2 {
+                font-size: 18px;
+            }
+
+
+            .cookie-popup p {
+                font-size: 13px;
+            }
+
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+
+            .btn {
+                font-size: 13px;
+                padding: 10px 20px;
+                width: 100%;
+            }
+
+
+            #wuffy-seo-content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Fundo Escuro -->
+    <div class="overlay" id="overlay"></div>
+
+
+    <!-- Wrapper para conter a caixa branca e o botão SEO por fora -->
+    <div class="popup-wrapper">
+       
+    <!-- TEXTO POP-UP -->
+<div class="cookie-popup" id="cookiePopup">
+    <a href="[LINK_DO_PRODUTO]"><h2>We Value Your Privacy</h2>
+    <p>To provide the best browsing experience and personalized offers, we use cookies to improve site navigation, analyze site usage, and assist in our marketing efforts. By clicking "Accept", you agree to our storage of cookies on your device.</p></a>
+    <div class="button-group">
+        <a id="acceptCookies" class="btn btn-accept" href="[LINK_DO_PRODUTO]">Accept All</a>
+        <a id="rejectCookies" class="btn btn-reject" href="[LINK_DO_PRODUTO]">Reject</a>
+    </div>
+</div>
+
+
+        <!-- BOTÃO SEO (Agora fora da caixa branca) -->
+        <button id="toggleSeoBtn" class="seo-btn" onclick="toggleSeoInfo()" aria-expanded="false" aria-controls="ryoko-pro-seo-content">
+    Learn More About Ryoko Pro ▾
+</button>
+
+<div id="ryoko-pro-seo-content" lang="en-US" style="display: none;">
+    <div class="meta-preview">
+        <strong>Title:</strong> Ryoko Pro – Unlimited Global High-Speed Internet Anywhere<br>
+        <strong>Description:</strong> Stay connected everywhere with Ryoko Pro. Get unlimited, high-speed, secure internet in 176 countries. No contracts, no roaming fees. Order yours today!
+    </div>
+
+    <hr class="border-gray-200 my-6">
+
+    <section>
+        <h1>Ryoko Pro: Your Ultimate Unlimited High-Speed Internet Companion</h1>
+        <p>In a world that never stops, staying connected shouldn't be a challenge. Ryoko Pro provides a cutting-edge solution for travelers, digital nomads, and families who demand reliable, secure, and fast internet access regardless of their location. By connecting automatically to the strongest local cell towers across 176 countries, Ryoko Pro ensures you are always online without the nightmare of roaming fees.</p>
+    </section>
+
+    <section>
+        <h2>How Does Ryoko Pro Work?</h2>
+        <p>Ryoko Pro utilizes advanced global network technology to detect and connect to the nearest internet tower in 176 countries. Through strategic partnerships with leading global internet providers, the device guarantees a stable, high-speed connection for all your devices, shielding you from the vulnerabilities of public WiFi networks.</p>
+        
+        <h3>Global Coverage & Freedom</h3>
+        <p>Whether you are on a business trip in a bustling metropolis, camping in a remote forest, or vacationing overseas, Ryoko Pro keeps you connected with no contracts and no surprise roaming fees.</p>
+        
+        <h3>Secure Browsing <span class="badge">DESTAQUE: ADVANCED PROTECTION</span></h3>
+        <p>Equipped with an integrated ad-blocker and malware protection, Ryoko Pro not only speeds up your connection by removing unwanted ads but also secures your data against phishing and online threats.</p>
+        
+        <h3>Multi-Device Support</h3>
+        <p>Share your high-speed internet with friends, family, or colleagues. Connect up to 10 devices simultaneously—phones, laptops, tablets, and smartwatches—with a single Ryoko Pro device.</p>
+    </section>
+
+    <section>
+        <h2>Technical Specifications</h2>
+        <ul>
+            <li><strong>Connection Speed:</strong> Up to 150Mb/s high-speed data.</li>
+            <li><strong>Battery Life:</strong> Up to 8 hours of continuous WiFi connectivity.</li>
+            <li><strong>Connectivity:</strong> Connects up to 10 devices simultaneously.</li>
+            <li><strong>Charging:</strong> Fast-charge via USB-C cable (included).</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Customer Success Stories</h2>
+        <blockquote>"Ryoko is a necessity every time we go out on a trip. It makes internet life easier for me and my spouse since all 3 of our kids can enjoy their own connection on the road." - Thomas S., Verified Customer</blockquote>
+        <blockquote>"Everything works just as advertised. Now, when I’m in the backyard working, I don’t have to worry about losing my connection while streaming." - Nancy S., Verified Customer</blockquote>
+        <blockquote>"Used this portable WiFi router by the lake and it worked perfectly. Setup was easy, signal was strong, and I could stream music and check emails." - Cliff K., Verified Customer</blockquote>
+        <blockquote>"The product is fantastic. The connection is consistent and fast. A great recommendation for anyone who travels." - Richard B., Verified Customer</blockquote>
+    </section>
+
+    <section>
+        <h2>FAQ - Frequently Asked Questions</h2>
+        
+        <h3>What devices can I connect to my Ryoko Pro?</h3>
+        <p>You can connect your smartphone, laptop, tablet, personal computer, or even a smartwatch. Ryoko supports up to 10 devices at the same time.</p>
+
+        <h3>Is it easy to use for non-tech users?</h3>
+        <p>Yes, absolutely! With a user-friendly design, Ryoko is designed for simplicity. Just power it on, scan the QR code, and you are connected.</p>
+
+        <h3>Does it work in remote areas?</h3>
+        <p>Ryoko Pro is designed to connect to the strongest available cell tower in 176 countries, making it highly effective even in areas where standard cell service might be weak or unavailable.</p>
+    </section>
+    
+    <footer>
+        <p style="font-size:0.8em; color:#666; margin-top:20px;">
+            <em>*Disclaimer: Results may vary based on location, network coverage, and local service provider infrastructure. Ryoko Pro provides access to available networks; speeds are subject to local signal strength.</em>
+        </p>
+    </footer>
+</div>
+
+<script>
+function toggleSeoInfo() {
+    var content = document.getElementById("ryoko-pro-seo-content");
+    var btn = document.getElementById("toggleSeoBtn");
+    if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+        btn.innerHTML = "Show Less Information ▴";
+        btn.setAttribute("aria-expanded", "true");
+        setTimeout(() => { content.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    } else {
+        content.style.display = "none";
+        btn.innerHTML = "Learn More About Ryoko Pro ▾";
+        btn.setAttribute("aria-expanded", "false");
+    }
+}
+</script>
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17967934704"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17967934704');
+</script>
+
+
+    <!-- Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vs1zwb7z0d");
+</script>
+
+
+    <!-- CannoliBot -->
+    <script async src="//cdn.jsdelivr.net/gh/opadim/script/cnl.js"></script>
+
+
+    <!-- Tracking -->
+    <script>
+    (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+       
+        // Pega os dados do Google Ads (Tenta pegar pelo nome oficial ou pelo sub1/sub2/sub3 antigo)
+        const keyword = urlParams.get('keyword') || urlParams.get('sub1') || "";
+        const gclid = urlParams.get('gclid') || urlParams.get('sub2') || "";
+        const campaignid = urlParams.get('campaignid') || urlParams.get('sub3') || "";
+
+
+        // Dicionário com todas as plataformas e suas respectivas configurações
+        const platforms = [
+            {
+                // Adcombo
+                match: ['adcombo'],
+                params: { keyword: 'subacc', gclid: 'subacc2', campaignid: 'subacc3' }
+            },
+            {
+                // Grupo principal (Adexico, MediaScalers, Everflow, etc)
+                match: [
+                    'adexico', '365conversions', 'cashfactories', 'clickflow', 'clickhunts',
+                    'clickads', 'cpacombo', 'cpagetti', 'dr.cash', 'everflow', 'fellasads',
+                    'gurumedia', 'leadbit', 'leadreaktor', 'leadrock', 'mediascalers',
+                    'clickrtrckr', /* domínio de rastreio da MediaScalers */
+                    'metacpa', 'moreniche', 'profitsnxt', 'profitpay', 'shakespro',
+                    'skylead', 'smashloud', 'smartadv'
+                ],
+                params: { keyword: 'sub1', gclid: 'sub2', campaignid: 'sub3' }
+            },
+            {
+                // Affbay / Buygoods / Maxweb
+                match: ['affbay', 'buygoods', 'maxweb'],
+                params: { keyword: 'subid', gclid: 'subid2', campaignid: 'subid3' }
+            },
+            {
+                // BlitzAds / Bluwave / Clickdealer
+                match: ['blitzads', 'bluwave', 'clickdealer'],
+                params: { keyword: 's1', gclid: 's2', campaignid: 's3' }
+            },
+            {
+                // CartPanda
+                match: ['cartpanda'],
+                params: { keyword: 'utm_source', campaignid: 'utm_campaign', gclid: 'cid' }
+            },
+            {
+                // Clickbank
+                match: ['clickbank', 'hop.clickbank'],
+                params: { keyword: 'aff_sub1', campaignid: 'campaign', gclid: 'extclid' }
+            },
+            {
+                // CPAHouse / JVZoo
+                match: ['cpahouse', 'jvzoo'],
+                params: { keyword: 'sub_id_1', gclid: 'sub_id_2', campaignid: 'sub_id_3' }
+            },
+            {
+                // Digistore24
+                match: ['digistore24', 'digistore'],
+                params: { keyword: 'sid1', campaignid: 'sid2', gclid: 'cid' }
+            },
+            {
+                // LemonAd
+                match: ['lemonad'],
+                params: { keyword: 'utm_source', campaignid: 'utm_campaign', gclid: 'clickid' }
+            },
+            {
+                // Netvork / Webvork
+                match: ['netvork', 'webvork'],
+                params: { keyword: 'utm_medium', gclid: 'utm_campaign', campaignid: 'utm_content' }
+            },
+            {
+                // Nutriprofits
+                match: ['nutriprofits'],
+                params: { keyword: 'param', gclid: 'param_2', campaignid: 'param_3' }
+            },
+            {
+                // TerraLeads
+                match: ['terraleads'],
+                params: { keyword: 'sub_id', gclid: 'sub_id_1', campaignid: 'sub_id_2' }
+            },
+            {
+                // TrafficLight
+                match: ['trafficlight'],
+                params: { keyword: 'utm_source', gclid: 'utm_medium', campaignid: 'utm_campaign' }
+            }
+        ];
+        const links = document.querySelectorAll('a');
+       
+        links.forEach(link => {
+            if (!link.href) return;
+           
+            try {
+                let url = new URL(link.href);
+
+
+                // Varre a lista de plataformas para ver se o link atual pertence a alguma delas
+                for (let platform of platforms) {
+                   
+                    // Verifica se o domínio ou URL do link tem a palavra-chave de rastreio da plataforma
+                    let isMatch = platform.match.some(domain => url.hostname.includes(domain) || url.href.includes(domain));
+                   
+                    if (isMatch) {
+                        // Aplica os parâmetros específicos só se eles existirem (evita colocar ?gclid= vazio)
+                        if (platform.params.keyword && keyword) {
+                            url.searchParams.set(platform.params.keyword, keyword);
+                        }
+                        if (platform.params.gclid && gclid) {
+                            url.searchParams.set(platform.params.gclid, gclid);
+                        }
+                        if (platform.params.campaignid && campaignid) {
+                            url.searchParams.set(platform.params.campaignid, campaignid);
+                        }
+                     
+                        link.href = url.href;
+                       
+                        // Uma vez que identificou a plataforma, encerra o loop para este link
+                        break;
+                    }
+                }
+            } catch (e) {
+                // Erros silenciosos para links inválidos (ex: javascript:void(0), mailto:, etc.)
+            }
+        });
+    })();
+</script>
+
+
+</body>
+</html>
